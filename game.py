@@ -354,7 +354,6 @@ def handleMovement():
                 if 'item' in zones[myPlayer.location] and itemName.lower() in zones[myPlayer.location]['item'].lower():                 
                     myPlayer.inventory.append(zones[myPlayer.location]['item'])
                     clearScreen()
-                    print(zones[myPlayer.location]['item'])
                     print(f'\n{itemName} got!')
                     del zones[myPlayer.location]['item']
                 else:
