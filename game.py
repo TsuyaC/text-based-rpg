@@ -314,7 +314,7 @@ def handleMovement():
     while True:
         printUI()
         cmd = input('>')
-        cmd = cmd.lower()
+
         if cmd == "":
             clearScreen()
             print('\nInvalid Command! See \'Commands\' or use the \'help\' command!')
@@ -323,7 +323,7 @@ def handleMovement():
             if spcCount:
                 cmd = cmd.split(' ')
             # move/go logic
-            if cmd[0] == 'go':
+            if cmd[0].lower() == 'go':
                 if cmd[1] in UP and UP in zones[myPlayer.location]:
                     myPlayer.location = zones[myPlayer.location][UP]
                     clearScreen()
@@ -340,7 +340,7 @@ def handleMovement():
                     clearScreen()
                     print('\nYou can\'t go that way! ')
             # get item logic
-            elif cmd[0] == 'get':
+            elif cmd[0].lower() == 'get':
                 itemName = ''
                 # handle itemnames with spaces
                 if spcCount >= 2:
@@ -351,9 +351,10 @@ def handleMovement():
                             itemName = f'{itemName} {cmd[i+1]}'
                 else:
                     itemName = cmd[1]
-                if 'item' in zones[myPlayer.location] and itemName in zones[myPlayer.location]['item'].lower():
-                    myPlayer.inventory += [itemName]
+                if 'item' in zones[myPlayer.location] and itemName.lower() in zones[myPlayer.location]['item'].lower():                 
+                    myPlayer.inventory.append(zones[myPlayer.location]['item'])
                     clearScreen()
+                    print(zones[myPlayer.location]['item'])
                     print(f'\n{itemName} got!')
                     del zones[myPlayer.location]['item']
                 else:
@@ -373,19 +374,19 @@ def handleMovement():
                 print('\nA monster has killed you! GAME OVER!')
                 myPlayer.game_over = True
                 break
-            if myPlayer.location == 'Garden' and 'key' in myPlayer.inventory and 'potion' in myPlayer.inventory:
+            if myPlayer.location == 'Garden' and 'Key' in myPlayer.inventory and 'Potion' in myPlayer.inventory:
                 clearScreen()
                 print('\nYou escaped the house... YOU WIN!')
                 myPlayer.win = True
                 myPlayer.game_over = True
                 break
-            if myPlayer.location == 'Laboratory' and 'book of life' in myPlayer.inventory or 'beam-o-mat' in myPlayer.inventory:
+            if myPlayer.location == 'Laboratory' and 'Book of Life' in myPlayer.inventory or 'Beam-O-Mat' in myPlayer.inventory:
                 clearScreen()
                 print('\nYou escaped into your own Pocket Dimension... YOU WIN!')
                 myPlayer.win = True
                 myPlayer.game_over = True
                 break
-            if myPlayer.location == 'Secret Room' and 'the number 42' in myPlayer.inventory:
+            if myPlayer.location == 'Secret Room' and 'The Number 42' in myPlayer.inventory:
                 clearScreen()
                 print('\n42!?!?!?!... YOU WIN?!?')
                 myPlayer.win = True
