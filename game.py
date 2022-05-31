@@ -78,7 +78,8 @@ zones = {
 
 # dont do this btw?
 def resetZones():
-    zones = {
+    zones.clear()
+    zones.update({
         'Hall' : {
                 DOWN : 'Kitchen',
                 UP : 'Library',
@@ -128,7 +129,7 @@ def resetZones():
                 DOWN : 'Office',
                 'monster' : False
             }
-	}
+	})
 
 # player class initializing the attributes for the player
 class player:
@@ -381,6 +382,12 @@ def handleMovement():
             if myPlayer.location == 'Laboratory' and 'book of life' in myPlayer.inventory or 'beam-o-mat' in myPlayer.inventory:
                 clearScreen()
                 print('\nYou escaped into your own Pocket Dimension... YOU WIN!')
+                myPlayer.win = True
+                myPlayer.game_over = True
+                break
+            if myPlayer.location == 'Secret Room' and 'the number 42' in myPlayer.inventory:
+                clearScreen()
+                print('\n42!?!?!?!... YOU WIN?!?')
                 myPlayer.win = True
                 myPlayer.game_over = True
                 break
