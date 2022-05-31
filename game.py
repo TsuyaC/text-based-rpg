@@ -379,7 +379,7 @@ def handleMovement():
                 myPlayer.win = True
                 myPlayer.game_over = True
                 break
-            if myPlayer.location == 'Laboratory' and 'Book of Life' in myPlayer.inventory or 'Beam-O-Mat' in myPlayer.inventory:
+            if myPlayer.location == 'Laboratory' and 'Book of Life' in myPlayer.inventory and 'Beam-O-Mat' in myPlayer.inventory:
                 clearScreen()
                 print('\nYou escaped into your own Pocket Dimension... YOU WIN!')
                 myPlayer.win = True
